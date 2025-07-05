@@ -5,7 +5,11 @@ from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, fil
 
 # Получаем API-ключи из переменных окружения
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-TELEGRAM_BOT_TOKEN = os.getenv("123456789:ABCdefGHIjklMNOpqrSTUvwxYZ")
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_TOKEN")
+
+# Проверка на случай, если ключи не подгрузились
+if not OPENAI_API_KEY or not TELEGRAM_BOT_TOKEN:
+    raise ValueError("Не найдены переменные окружения OPENAI_API_KEY или TELEGRAM_TOKEN")
 
 # Устанавливаем ключ для OpenAI
 openai.api_key = OPENAI_API_KEY
